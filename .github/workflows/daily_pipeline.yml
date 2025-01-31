@@ -1,0 +1,42 @@
+name: Daily Data Pipeline
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight UTC
+
+jobs:
+  run_pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set Up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt  # Ensure required packages are listed in this file
+
+    - name: Run RSS Feed Parser
+      run: python rss_parser.py  # Script to fetch and parse articles
+
+    - name: Run Data Preprocessing
+      run: python preprocess.py  # Script for text cleaning and filtering
+
+    - name: Extract Locations
+      run: python location_extraction.py  # Your spaCy + OpenAI pipeline
+
+    - name: Plot Data on Map
+      run: python map_plot.py  # Script to visualize results
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add .
+        git commit -m "Automated daily pipeline update"
+        git push
