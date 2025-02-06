@@ -9,7 +9,6 @@ ipykernel
 jupyter
 nbconvert
 datetime
-re
 requests
 BeautifulSoup4
 transformers
