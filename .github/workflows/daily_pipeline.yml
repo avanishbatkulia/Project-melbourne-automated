@@ -1,42 +1,36 @@
-name: Daily Data Pipeline
+name: Daily Melbourne Incident Processing
 
 on:
   schedule:
-    - cron: "30 12 * * *"  # Runs daily at 12:30 UTC
+    - cron: "0 4 * * *"  # Runs daily at 1 PM Melbourne time (UTC+4)
+  workflow_dispatch:  # Allows manual execution
 
 jobs:
-  run_pipeline:
+  run-pipeline:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set Up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt  # Ensure required packages are listed in this file
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
 
-    - name: Run RSS Feed Parser
-      run: python rss_parser.py  # Script to fetch and parse articles
+      - name: Convert Notebook to Python Script
+        run: jupyter nbconvert --to script "project_Melbourne(31_01).ipynb"
 
-    - name: Run Data Preprocessing
-      run: python preprocess.py  # Script for text cleaning and filtering
+      - name: Run the Pipeline
+        run: python "project_Melbourne(31_01).py"
 
-    - name: Extract Locations
-      run: python location_extraction.py  # Your spaCy + OpenAI pipeline
-
-    - name: Plot Data on Map
-      run: python map_plot.py  # Script to visualize results
-
-    - name: Commit and Push Changes
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add .
-        git commit -m "Automated daily pipeline update"
-        git push
+      - name: Commit and Push Results
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Auto update results"
+          git push
