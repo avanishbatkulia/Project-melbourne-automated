@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run the Pipeline
-        run: python "project_melbourne(31_01).py"
+        run: python "project_Melbourne(31_01).py"
 
       - name: Commit and Push Results
         run: |
