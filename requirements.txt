@@ -1,1 +1,16 @@
-
+pandas
+numpy
+openai
+spacy
+feedparser
+geopy
+matplotlib
+ipykernel
+jupyter
+nbconvert
+datetime
+requests
+BeautifulSoup4
+transformers
+folium
+geopandas
