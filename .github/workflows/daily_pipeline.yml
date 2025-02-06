@@ -2,7 +2,7 @@ name: Daily Melbourne Incident Processing
 
 on:
   schedule:
-    - cron: "39 21 * * *"  # Runs daily at 1 PM Melbourne time (UTC+4)
+    - cron: "0 4 * * *"  # Runs daily at 1 PM Melbourne time (UTC+4)
   workflow_dispatch:  # Allows manual execution
 
 jobs:
@@ -20,15 +20,9 @@ jobs:
 
       - name: Fetch latest code
         run: git pull origin main  # Ensure it pulls the latest changes
-          
-      - name: Fetch latest code
-        run: git pull origin main  # Ensure it pulls the latest changes
 
       - name: Install Dependencies
         run: pip install -r requirements.txt
-
-      - name: Convert Notebook to Python Script
-        run: jupyter nbconvert --to script "project_Melbourne(31_01).ipynb"
 
       - name: Run the Pipeline
         run: python "project_Melbourne(31_01).py"
