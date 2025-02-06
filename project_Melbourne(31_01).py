@@ -7,11 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1rb7vREhr5VAGlIai6njexiQpbfLFLjqs
 """
 
-!pip install feedparser pandas
 
-!pip install openai==0.28
-
-!pip install transformers
 
 import feedparser
 import pandas as pd
@@ -183,7 +179,6 @@ Zero shot Classification using DeBERTa
 
 """# Extractiing Crime and Accident Location"""
 
-pip install beautifulsoup4 requests
 
 #Scraping news articles from URL with crime or accident news
 
