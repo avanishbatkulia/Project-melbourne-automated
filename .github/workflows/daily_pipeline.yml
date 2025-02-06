@@ -2,7 +2,7 @@ name: Daily Melbourne Incident Processing
 
 on:
   schedule:
-    - cron: "0 4 * * *"  # Runs daily at 1 PM Melbourne time (UTC+4)
+    - cron: "36 21 * * *"  # Runs daily at 1 PM Melbourne time (UTC+4)
   workflow_dispatch:  # Allows manual execution
 
 jobs:
