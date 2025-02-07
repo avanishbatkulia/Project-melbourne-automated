@@ -7,11 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1rb7vREhr5VAGlIai6njexiQpbfLFLjqs
 """
 
-!pip install feedparser pandas
-
-!pip install openai==0.28
-
-!pip install transformers
 
 import feedparser
 import pandas as pd
@@ -183,7 +178,7 @@ Zero shot Classification using DeBERTa
 
 """# Extractiing Crime and Accident Location"""
 
-!pip install beautifulsoup4 requests
+
 
 #Scraping news articles from URL with crime or accident news
 
@@ -398,7 +393,7 @@ print(df[["full_text", "locations", "refined_location"]].head())
 
 """# Locating on Map"""
 
-!pip install geopandas folium geopy
+
 
 import pandas as pd
 from geopy.geocoders import Nominatim
