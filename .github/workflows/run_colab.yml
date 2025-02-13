@@ -1,0 +1,16 @@
+name: Run Colab Script
+
+on:
+  schedule:
+    - cron: "30 4 * * *"  # Runs daily at 4:30 AM UTC (Adjust as needed)
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  trigger-colab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Google Colab Execution
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{}' \
+          "https://us-central1-notebooks.cloudfunctions.net/colab-execute?notebook=1rb7vREhr5VAGlIai6njexiQpbfLFLjqs&authuser=0"
