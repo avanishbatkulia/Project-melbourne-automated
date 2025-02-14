@@ -2,7 +2,7 @@ name: Run Colab Script
 
 on:
   schedule:
-    - cron: "/10 * * * *"  # Runs every 10 mins
+    - cron: "10 4 * * *"  # Runs every 10 mins
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
